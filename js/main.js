@@ -144,6 +144,7 @@ window.renderHome = () => {
         <button class="btn btn-outline" style="margin-top:auto;" onclick="window.startPractice('intensive', ${p})">
           <i class="ph ph-barbell"></i> Luyện ngay
         </button>
+        ${p === 2 ? `<button class="btn btn-primary" style="margin-top:0.5rem;" onclick="window.openPart2CategoryModal()"><i class="ph ph-list-dashes"></i> Luyện theo Dạng</button>` : ''}
       </div>
      `;
   });
@@ -170,6 +171,38 @@ window.renderHome = () => {
             <div class="modal-footer">
                <button class="btn btn-outline" onclick="window.closeTestModal()">Hủy</button>
                <button class="btn btn-primary" onclick="window.confirmTestModal()">Bắt đầu luyện tập</button>
+            </div>
+         </div>
+      </div>
+      
+      <!-- Part 2 Category Modal Overlay -->
+      <div class="modal-overlay" id="part2-category-modal">
+         <div class="modal-box">
+            <div class="modal-header">
+               <div class="modal-title">Luyện Part 2 Theo Dạng</div>
+               <i class="ph ph-x modal-close" onclick="window.closePart2CategoryModal()"></i>
+            </div>
+            <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+               <button class="btn btn-outline" onclick="window.toggleAllPart2Categories()" style="width:100%; justify-content:center; margin-bottom: 0.5rem;">
+                  <i class="ph ph-check-square"></i> Chọn / Bỏ chọn tất cả
+               </button>
+               <div class="checkbox-group" id="part2-category-checkboxes">
+                  <label class="checkbox-item"><input type="checkbox" value="wh" class="p2-cat-cb"> 1. WH Question</label>
+                  <label class="checkbox-item"><input type="checkbox" value="yesno" class="p2-cat-cb"> 2. Yes/No Question</label>
+                  <label class="checkbox-item"><input type="checkbox" value="choice" class="p2-cat-cb"> 3. Choice Question (or)</label>
+                  <label class="checkbox-item"><input type="checkbox" value="suggestion" class="p2-cat-cb"> 4. Suggestion (Why don't we, Let's...)</label>
+                  <label class="checkbox-item"><input type="checkbox" value="request" class="p2-cat-cb"> 5. Request (Could you, Please...)</label>
+                  <label class="checkbox-item"><input type="checkbox" value="offer" class="p2-cat-cb"> 6. Offer (Can I, Shall I...)</label>
+                  <label class="checkbox-item"><input type="checkbox" value="invitation" class="p2-cat-cb"> 7. Invitation (Would you like to...)</label>
+                  <label class="checkbox-item"><input type="checkbox" value="opinion" class="p2-cat-cb"> 8. Opinion (What do you think...)</label>
+                  <label class="checkbox-item"><input type="checkbox" value="reason" class="p2-cat-cb"> 9. Reason / Why Question</label>
+                  <label class="checkbox-item"><input type="checkbox" value="indirect" class="p2-cat-cb"> 10. Indirect Question (Do you know...)</label>
+                  <label class="checkbox-item"><input type="checkbox" value="unknown" class="p2-cat-cb"> Dạng khác (Unknown)</label>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button class="btn btn-outline" onclick="window.closePart2CategoryModal()">Hủy</button>
+               <button class="btn btn-primary" onclick="window.confirmPart2CategoryModal()">Bắt đầu luyện tập</button>
             </div>
          </div>
       </div>
@@ -206,7 +239,56 @@ window.confirmTestModal = () => {
    window.startPractice('test', currentModalTestId, selectedParts);
 };
 
-window.startPractice = async (mode, id, selectedParts = []) => {
+window.categorizePart2Question = (engText) => {
+  if (!engText) return 'unknown';
+  let lines = engText.split('\n');
+  let qText = '';
+  for (let line of lines) {
+    if (line.match(/^\([A-D]\)/)) break;
+    qText += line + ' ';
+  }
+  qText = qText.replace(/^\d+[\.\s]*/, '').trim();
+
+  if (/^(Do you know|Could you tell me|Do you happen to know|I was wondering)/i.test(qText)) return 'indirect';
+  if (/^(What do you think|How do you feel|What's your opinion)/i.test(qText)) return 'opinion';
+  if (/^(Would you like to|Do you want to|Can you join us)/i.test(qText)) return 'invitation';
+  if (/^(Would you like me to|Can I|Shall I)/i.test(qText)) return 'offer';
+  if (/^(Could you|Would you|Can you|Please)/i.test(qText)) return 'request';
+  if (/^(Why don't we|Let's|How about|Shall we)/i.test(qText)) return 'suggestion';
+  if (/\bor\b/i.test(qText)) return 'choice';
+  if (/^Why\b/i.test(qText)) return 'reason';
+  if (/^(What|Where|When|Who|Which|How)\b/i.test(qText)) return 'wh';
+  if (/^(Is|Are|Do|Does|Did|Have|Has|Can|Will|Would)\b/i.test(qText)) return 'yesno';
+
+  return 'unknown';
+};
+
+window.openPart2CategoryModal = () => {
+   document.querySelectorAll('.p2-cat-cb').forEach(cb => cb.checked = false);
+   document.getElementById('part2-category-modal').classList.add('active');
+};
+
+window.closePart2CategoryModal = () => {
+   document.getElementById('part2-category-modal').classList.remove('active');
+};
+
+window.toggleAllPart2Categories = () => {
+   const cbs = Array.from(document.querySelectorAll('.p2-cat-cb'));
+   const allChecked = cbs.every(cb => cb.checked);
+   cbs.forEach(cb => cb.checked = !allChecked);
+};
+
+window.confirmPart2CategoryModal = () => {
+   let selectedCategories = Array.from(document.querySelectorAll('.p2-cat-cb')).filter(cb => cb.checked).map(cb => cb.value);
+   if (selectedCategories.length === 0) {
+      window.showToast("Cảnh báo", "Vui lòng chọn ít nhất một dạng để luyện tập.");
+      return;
+   }
+   window.closePart2CategoryModal();
+   window.startPractice('part2_category', null, selectedCategories);
+};
+
+window.startPractice = async (mode, id, selectedOptions = []) => {
   isPodcastMode = false;
   practiceQueue = [];
   window.userAnswers = await window.loadUserData('answers') || {};
@@ -215,7 +297,7 @@ window.startPractice = async (mode, id, selectedParts = []) => {
   if (mode === 'test') {
     const t = tests.find(x => x.id === id);
     t.parts.forEach(p => {
-      if (selectedParts.includes(p.id)) {
+      if (selectedOptions.includes(p.id)) {
         p.groups.forEach(g => {
           practiceQueue.push({ testId: t.id, partId: p.id, group: g, answers: t.answers });
         });
@@ -231,9 +313,25 @@ window.startPractice = async (mode, id, selectedParts = []) => {
         });
       }
     });
+  } else if (mode === 'part2_category') {
+    tests.forEach(t => {
+      const p = t.parts.find(x => x.id === 2);
+      if (p) {
+        p.groups.forEach(g => {
+          const category = window.categorizePart2Question(g.eng);
+          if (selectedOptions.includes(category)) {
+            practiceQueue.push({ testId: t.id, partId: p.id, group: g, answers: t.answers, p2cat: category });
+          }
+        });
+      }
+    });
   }
   
   currentIndex = 0;
+  if (practiceQueue.length === 0) {
+     window.showToast("Thông báo", "Không có câu hỏi nào thuộc các dạng bạn đã chọn.");
+     return;
+  }
   renderLayout();
 };
 
@@ -653,8 +751,9 @@ function renderSidebar() {
         if(window.userAnswers[`${q.testId}_${i}`] || window.userDictations[`${q.testId}_${q.group.start}`]) isDone = true;
      }
      let lbl = q.group.start === q.group.end ? q.group.start : q.group.start + '-' + q.group.end;
+     let catTooltip = q.p2cat ? ` [${q.p2cat}]` : '';
      sbHTML += `
-       <div id="sb-item-${idx}" class="palette-btn ${idx === currentIndex ? 'active' : ''} ${isDone ? 'done' : ''}" onclick="window.jumpTo(${idx})" title="Test ${q.testId} - Part ${q.partId} | Q${lbl}">
+       <div id="sb-item-${idx}" class="palette-btn ${idx === currentIndex ? 'active' : ''} ${isDone ? 'done' : ''}" onclick="window.jumpTo(${idx})" title="Test ${q.testId} - Part ${q.partId} | Q${lbl}${catTooltip}">
          ${lbl}
        </div>
      `;
@@ -783,10 +882,11 @@ function renderCurrentGroup() {
   }
   
   const textData = item.group;
+  let mainCatBadge = item.p2cat ? ` <br/><span style="font-size:0.8rem; color:var(--text-muted); font-weight:400; text-transform:uppercase;">[${item.p2cat}]</span>` : '';
 
   main.innerHTML = `
     <div class="audio-header">
-       <div class="group-title">Test ${item.testId} - Part ${item.partId} <br/> Câu ${r0 === r1 ? r0 : r0+'-'+r1}</div>
+       <div class="group-title">Test ${item.testId} - Part ${item.partId} <br/> Câu ${r0 === r1 ? r0 : r0+'-'+r1}${mainCatBadge}</div>
        
        <div class="audio-ctrl-btn" id="play-btn" onclick="window.togglePlay()" title="Phát/Tạm dừng (Ctrl + Space)"><i class="ph ph-play"></i></div>
        

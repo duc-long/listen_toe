@@ -27,7 +27,7 @@ Vì đây là một ứng dụng tĩnh 100% (Vanilla JS/HTML/CSS), bạn không 
 
 > **MỤC ĐÍCH HỌC TẬP CÁ NHÂN**
 
-- Dự án này được thiết kế và xây dựng **DUY NHẤT cho mục đích học tập cá nhân**, nhằm nâng cao kỹ năng nghe tiếng Anh và rèn luyện kỹ năng lập trình web.
+- Dự án này được thiết kế và xây dựng **DUY NHẤT cho mục đích học tập cá nhân**, nhằm nâng cao kỹ năng nghe tiếng Anh và rèn luyện kỹ năng vibe lập trình web.
 - **TUYỆT ĐỐI KHÔNG** sử dụng mã nguồn, dữ liệu âm thanh, hoặc hình ảnh trong repository này vào bất kỳ **mục đích thương mại, trục lợi, hoặc kinh doanh** nào.
 - Dữ liệu nghe/đọc (nếu có) thuộc về bản quyền của các đơn vị sở hữu bài thi TOEIC gốc (VD: ETS). Tác giả của repository này không sở hữu bản quyền nội dung bài thi và sẽ không chịu trách nhiệm trước bất kỳ hành vi vi phạm bản quyền hay sử dụng sai mục đích nào từ phía người dùng thứ ba.
 

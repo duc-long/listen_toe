@@ -527,7 +527,7 @@ function processTranscript(text, isEnglish = false) {
        const words = content.split(/(\s+)/);
        
        let hideSet = new Set();
-       if (hideMode > 0) {
+       if (hideMode > 0 && isEnglish) {
           let cands = [];
           let prios = [];
           let fallbacks = [];
@@ -577,7 +577,7 @@ function processTranscript(text, isEnglish = false) {
          if (isEnglish) wordClass += " clickable";
          
          const isVietnamese = /[àáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđ]/i.test(word);
-         if (!isVietnamese && word.length > 1) {
+         if (isEnglish && !isVietnamese && word.length > 1) {
            if (hideMode === -1) { 
              wordClass += " hidden";
            } else if (hideMode > 0 && hideSet.has(i)) {

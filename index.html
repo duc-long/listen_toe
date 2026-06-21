@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOEIC Listening Master</title>
+    <!-- Google Fonts: Outfit for modern, clean, bright look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- PWA Setup -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#1b365d">
+    <link rel="icon" href="./logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="./logo.png">
+    
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- App Shell Header -->
+      <header class="app-header">
+        <div class="logo">
+          <img src="./logo.png" style="width: 28px; height: 28px; border-radius: 4px;" alt="Logo">
+          <h1>TOEIC Master</h1>
+        </div>
+        <nav class="nav-links">
+          <a href="#" class="active" id="nav-home">Home</a>
+          <a href="#" id="nav-roadmap">Roadmap</a>
+          <a href="#" id="nav-stats">Stats</a>
+        </nav>
+      </header>
+
+      <!-- Main Content Area -->
+      <main id="main-content" class="container">
+        <!-- Content will be injected by main.js -->
+      </main>
+    </div>
+    <script src="./data/tests.js"></script>
+    <script src="./js/main.js"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('ServiceWorker registered'))
+            .catch(err => console.log('ServiceWorker registration failed: ', err));
+        });
+      }
+    </script>
+  </body>
+</html>

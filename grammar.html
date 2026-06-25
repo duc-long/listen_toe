@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TOEIC Grammar Master</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- PWA Setup -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#1b365d">
+    <link rel="icon" href="./logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="./logo.png">
+    
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./css/grammar.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- App Shell Header -->
+      <header class="app-header">
+        <div class="logo">
+          <img src="./logo.png" style="width: 28px; height: 28px; border-radius: 4px;" alt="Logo">
+          <h1>TOEIC Master</h1>
+        </div>
+        <nav class="nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="#" class="active">Ngữ pháp</a>
+          <a href="tips.html">Mẹo TOEIC</a>
+          <div style="border-left:1px solid rgba(255,255,255,0.3); height:20px; margin:0 0.5rem;"></div>
+          <button id="theme-toggle-btn" title="Sáng/Tối" style="color:white; font-size:1.1rem; padding:0; display:flex; justify-content:center; align-items:center; background:none; border:none; cursor:pointer;"><i class="ph ph-moon theme-toggle-icon"></i></button>
+        </nav>
+      </header>
+
+      <!-- Main Content Area -->
+      <main id="main-content" class="container">
+        <!-- Content injected by grammar.js -->
+      </main>
+    </div>
+    
+    <script src="./data/data.js"></script>
+    <script src="./js/grammar.js"></script>
+  </body>
+</html>

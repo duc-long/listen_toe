@@ -91,6 +91,7 @@ window.renderHome = () => {
       </div>
       <nav class="nav-links">
          <a href="#" class="active" onclick="window.renderHome()">Trang chủ</a>
+         <a href="grammar.html">Ngữ pháp</a>
          <a href="#" onclick="window.renderVault()">Sniper Vault</a>
          <a href="#" onclick="window.renderManual()">Hướng dẫn</a>
          <div style="border-left:1px solid rgba(255,255,255,0.3); height:20px; margin:0 0.5rem;"></div>
@@ -984,7 +985,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (savedTheme) {
     document.documentElement.setAttribute('data-theme', savedTheme);
   }
-  window.renderHome();
+  const urlParams = new URLSearchParams(window.location.search);
+  const view = urlParams.get('view');
+  if (view === 'vault') {
+    window.renderVault();
+  } else if (view === 'manual') {
+    window.renderManual();
+  } else {
+    window.renderHome();
+  }
 });
 
 window.getThemeIcon = () => {
@@ -1116,6 +1125,7 @@ window.renderVault = () => {
       </div>
       <nav class="nav-links">
          <a href="#" onclick="window.renderHome()">Trang chủ</a>
+         <a href="grammar.html">Ngữ pháp</a>
          <a href="#" class="active" onclick="window.renderVault()">Sniper Vault</a>
          <a href="#" onclick="window.renderManual()">Hướng dẫn</a>
          <div style="border-left:1px solid rgba(255,255,255,0.3); height:20px; margin:0 0.5rem;"></div>
@@ -1209,6 +1219,7 @@ window.renderManual = () => {
       </div>
       <nav class="nav-links">
          <a href="#" onclick="window.renderHome()">Trang chủ</a>
+         <a href="grammar.html">Ngữ pháp</a>
          <a href="#" onclick="window.renderVault()">Sniper Vault</a>
          <a href="#" class="active" onclick="window.renderManual()">Hướng dẫn</a>
          <div style="border-left:1px solid rgba(255,255,255,0.3); height:20px; margin:0 0.5rem;"></div>

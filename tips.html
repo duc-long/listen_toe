@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mẹo Nhận Biết Từ Loại - TOEIC Master</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/tips.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- App Shell Header -->
+    <header class="app-header">
+      <div class="logo">
+        <img src="./logo.png" style="width: 28px; height: 28px; border-radius: 4px;" alt="Logo">
+        <h1>TOEIC Master</h1>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Trang chủ</a>
+        <a href="grammar.html">Ngữ pháp</a>
+        <a href="tips.html" class="active">Mẹo TOEIC</a>
+        <div style="border-left:1px solid rgba(255,255,255,0.3); height:20px; margin:0 0.5rem;"></div>
+        <button id="theme-toggle-btn" title="Sáng/Tối" style="color:white; font-size:1.1rem; padding:0; display:flex; justify-content:center; align-items:center; background:none; border:none; cursor:pointer;"><i class="ph ph-moon theme-toggle-icon"></i></button>
+      </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="container">
+      <div class="hero" style="text-align:center; margin-bottom:2rem;">
+        <h2 style="font-size:2rem; margin-bottom:0.5rem; color:var(--text-main);">Mẹo Nhận Biết Từ Loại</h2>
+        <p style="font-size:1.05rem; color:var(--text-muted);">Quy tắc 5 giây giúp bạn vượt qua phần Part 5 nhanh chóng</p>
+      </div>
+
+      <div class="tips-container">
+        
+        <!-- Công cụ Check Từ Loại -->
+        <div class="tip-section" style="border-color: var(--surface-active-border); background: var(--surface-hover);">
+          <div style="display:flex; align-items:center; gap: 0.75rem; margin-bottom: 1rem;">
+            <i class="ph ph-magnifying-glass" style="font-size: 2rem; color: var(--primary);"></i>
+            <h2 style="margin: 0; border: none; padding: 0;">Công cụ phân tích từ loại tự động</h2>
+          </div>
+          <p style="color: var(--text-muted); margin-bottom: 1rem;">Nhập hoặc dán một từ / đoạn văn bản tiếng Anh vào đây, hệ thống sẽ tự động phân tích và nhận diện từ loại của các từ dựa trên các quy tắc và ngoại lệ.</p>
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; flex-direction: column;">
+            <textarea id="pos-input" class="dictation-area" placeholder="Dán văn bản hoặc nhập từ (ví dụ: This development is very successfully managed)..." style="height: 100px; width: 100%;"></textarea>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+              <button class="btn btn-primary" onclick="checkPOS()"><i class="ph ph-check"></i> Phân tích</button>
+              <button class="btn btn-outline" onclick="document.getElementById('pos-input').value=''; document.getElementById('pos-results-container').style.display='none';"><i class="ph ph-trash"></i> Xóa</button>
+            </div>
+          </div>
+          
+          <div id="pos-results-container" style="display: none;">
+            <h3 style="margin-top: 0; color: var(--primary); font-size: 1.1rem; margin-bottom: 0.75rem;">Kết quả phân tích:</h3>
+            <div style="overflow-x: auto;">
+              <table class="tip-table" style="margin-bottom: 0;">
+                <thead>
+                  <tr>
+                    <th>Từ vựng</th>
+                    <th>Từ loại dự đoán</th>
+                    <th>Dấu hiệu (Quy tắc)</th>
+                  </tr>
+                </thead>
+                <tbody id="pos-results">
+                  <!-- Results injected here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phần 1: Danh từ -->
+        <div class="tip-section">
+          <h2>1. Dấu hiệu Danh từ (Noun)</h2>
+          
+          <h3>Vị trí</h3>
+          <p>Đứng sau:</p>
+          <ul class="example-list">
+            <li>a, an, the</li>
+            <li>this, that, these, those</li>
+            <li>my, your, his, her, its, our, their</li>
+            <li>some, any, many, much, few, little</li>
+          </ul>
+          <p>Ví dụ:</p>
+          <ul class="example-list">
+            <li>a book</li>
+            <li>the depth</li>
+            <li>my computer</li>
+          </ul>
+
+          <p>Đứng sau tính từ:</p>
+          <ul class="example-list">
+            <li>beautiful girl</li>
+            <li>deep knowledge</li>
+          </ul>
+
+          <p>Làm chủ ngữ:</p>
+          <ul class="example-list">
+            <li>Knowledge is power.</li>
+            <li>Depth matters.</li>
+          </ul>
+
+          <h3>Đuôi thường gặp</h3>
+          <table class="tip-table">
+            <thead>
+              <tr>
+                <th>Đuôi</th>
+                <th>Ví dụ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>-tion</td><td>information</td></tr>
+              <tr><td>-sion</td><td>decision</td></tr>
+              <tr><td>-ment</td><td>development</td></tr>
+              <tr><td>-ness</td><td>happiness</td></tr>
+              <tr><td>-ity</td><td>ability</td></tr>
+              <tr><td>-ence / -ance</td><td>difference, importance</td></tr>
+              <tr><td>-ship</td><td>friendship</td></tr>
+              <tr><td>-er / -or</td><td>teacher, actor</td></tr>
+              <tr><td>-ist</td><td>scientist</td></tr>
+              <tr><td>-ism</td><td>tourism</td></tr>
+              <tr><td>-age</td><td>package</td></tr>
+              <tr><td>-th</td><td>depth, width, length</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Ngoại lệ</h3>
+          <p>Một số từ có đuôi giống danh từ nhưng là tính từ:</p>
+          <ul class="example-list">
+            <li>friendly</li>
+            <li>lovely</li>
+            <li>lonely</li>
+          </ul>
+        </div>
+
+        <!-- Phần 2: Động từ -->
+        <div class="tip-section">
+          <h2>2. Dấu hiệu Động từ (Verb)</h2>
+          
+          <h3>Vị trí</h3>
+          <p>Đứng sau chủ ngữ:</p>
+          <ul class="example-list">
+            <li>I study.</li>
+            <li>She works.</li>
+          </ul>
+          <p>Đứng sau modal verb:</p>
+          <ul class="example-list">
+            <li>can swim</li>
+            <li>must finish</li>
+            <li>should go</li>
+          </ul>
+
+          <h3>Đuôi thường gặp</h3>
+          <table class="tip-table">
+            <thead>
+              <tr>
+                <th>Đuôi</th>
+                <th>Ví dụ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>-ize</td><td>realize</td></tr>
+              <tr><td>-ise</td><td>organise</td></tr>
+              <tr><td>-fy</td><td>simplify</td></tr>
+              <tr><td>-en</td><td>strengthen</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Ngoại lệ</h3>
+          <p>Nhiều động từ không có đuôi đặc trưng:</p>
+          <ul class="example-list">
+            <li>go</li>
+            <li>come</li>
+            <li>make</li>
+            <li>take</li>
+            <li>get</li>
+          </ul>
+        </div>
+
+        <!-- Phần 3: Tính từ -->
+        <div class="tip-section">
+          <h2>3. Dấu hiệu Tính từ (Adjective)</h2>
+          
+          <h3>Vị trí</h3>
+          <p>Đứng trước danh từ:</p>
+          <ul class="example-list">
+            <li>beautiful girl</li>
+            <li>large building</li>
+          </ul>
+          <p>Đứng sau động từ liên kết (be, seem, look, become, feel, sound):</p>
+          <ul class="example-list">
+            <li>She is happy.</li>
+            <li>It looks nice.</li>
+          </ul>
+
+          <h3>Đuôi thường gặp</h3>
+          <table class="tip-table">
+            <thead>
+              <tr>
+                <th>Đuôi</th>
+                <th>Ví dụ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>-ful</td><td>beautiful</td></tr>
+              <tr><td>-ous</td><td>famous</td></tr>
+              <tr><td>-able</td><td>comfortable</td></tr>
+              <tr><td>-ible</td><td>possible</td></tr>
+              <tr><td>-al</td><td>national</td></tr>
+              <tr><td>-ic</td><td>economic</td></tr>
+              <tr><td>-ive</td><td>active</td></tr>
+              <tr><td>-less</td><td>careless</td></tr>
+              <tr><td>-y</td><td>rainy</td></tr>
+              <tr><td>-ish</td><td>childish</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Ngoại lệ lớn</h3>
+          <div class="tip-box">
+            <p><strong>Đuôi -ed (Đây là tính từ, không phải động từ):</strong> interested, bored, excited</p>
+            <p><strong>Đuôi -ing (Đây là tính từ, không phải động từ):</strong> interesting, boring, exciting</p>
+            <p><strong>Đuôi -ly (Đây là tính từ, không phải trạng từ):</strong> friendly, lovely, lively, lonely, ugly</p>
+          </div>
+        </div>
+
+        <!-- Phần 4: Trạng từ -->
+        <div class="tip-section">
+          <h2>4. Dấu hiệu Trạng từ (Adverb)</h2>
+          
+          <h3>Vị trí</h3>
+          <p>Bổ nghĩa cho động từ, tính từ, trạng từ khác:</p>
+          <ul class="example-list">
+            <li>run quickly</li>
+            <li>very beautiful</li>
+            <li>extremely fast</li>
+          </ul>
+
+          <h3>Đuôi thường gặp</h3>
+          <table class="tip-table">
+            <thead>
+              <tr>
+                <th>Đuôi</th>
+                <th>Ví dụ</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>-ly</td><td>quickly</td></tr>
+              <tr><td>-ward</td><td>forward</td></tr>
+              <tr><td>-wise</td><td>clockwise</td></tr>
+            </tbody>
+          </table>
+
+          <h3>Ngoại lệ cực hay thi</h3>
+          <div class="tip-box">
+            <p><strong>Không có -ly vẫn là trạng từ:</strong> fast, hard, late, early, straight (VD: He runs fast.)</p>
+            <p><strong>Có -ly nhưng không phải trạng từ:</strong> friendly, lovely, lonely, lively (đều là tính từ).</p>
+          </div>
+        </div>
+
+        <!-- Phần 5: Giới từ -->
+        <div class="tip-section">
+          <h2>5. Dấu hiệu Giới từ (Preposition)</h2>
+          <p>Các từ gặp nhiều:</p>
+          <ul class="example-list">
+            <li>in, on, at, for, from, with, about, before, after, during, among, between</li>
+          </ul>
+          <p>Sau giới từ luôn ưu tiên:</p>
+          <ul class="example-list">
+            <li>noun</li>
+            <li>pronoun</li>
+            <li>V-ing</li>
+          </ul>
+          <p>Ví dụ: interested in learning, good at English, before leaving</p>
+        </div>
+
+        <!-- Phần 6: Liên từ -->
+        <div class="tip-section">
+          <h2>6. Dấu hiệu Liên từ (Conjunction)</h2>
+          <h3>FANBOYS</h3>
+          <ul class="example-list">
+            <li>For, And, Nor, But, Or, Yet, So</li>
+          </ul>
+          <h3>Liên từ phụ thuộc</h3>
+          <ul class="example-list">
+            <li>because, although, while, since, unless, if, when</li>
+          </ul>
+        </div>
+
+        <!-- Phần 7: Đại từ -->
+        <div class="tip-section">
+          <h2>7. Dấu hiệu Đại từ (Pronoun)</h2>
+          <ul class="example-list">
+            <li>Chủ ngữ: I, you, he, she, it, we, they</li>
+            <li>Tân ngữ: me, him, her, us, them</li>
+          </ul>
+        </div>
+
+        <!-- Phần 8: Bộ quy tắc đoán nhanh -->
+        <div class="tip-section">
+          <h2>8. Bộ quy tắc đoán nhanh TOEIC</h2>
+          
+          <h3>Bước 1: Nhìn đuôi từ</h3>
+          <div class="quick-rule-box" style="margin-bottom: 1rem;">
+            <div>-tion, -ment, -ness, -ity <span class="arrow">&rarr;</span> Noun</div>
+            <div>-ful, -ous, -ive, -able <span class="arrow">&rarr;</span> Adjective</div>
+            <div>-ly <span class="arrow">&rarr;</span> Adverb</div>
+          </div>
+
+          <h3>Bước 2: Kiểm tra ngoại lệ</h3>
+          <div class="quick-rule-box" style="margin-bottom: 1rem;">
+            <div>friendly, lovely, lively, lonely, ugly <span class="arrow">&rarr;</span> Adjective</div>
+            <div>fast, hard, late, early, straight <span class="arrow">&rarr;</span> Adverb</div>
+          </div>
+
+          <h3>Bước 3: Nhìn từ trước</h3>
+          <div class="quick-rule-box" style="margin-bottom: 1rem;">
+            <div>the + ? / a + ? / my + ? <span class="arrow">&rarr;</span> Noun</div>
+            <div>be + ? / seem + ? / feel + ? / look + ? <span class="arrow">&rarr;</span> Adjective</div>
+            <div>can + ? / must + ? / should + ? <span class="arrow">&rarr;</span> Verb nguyên mẫu</div>
+          </div>
+
+          <h3>Bước 4: Nhìn từ sau</h3>
+          <div class="quick-rule-box">
+            <div>adj + noun (VD: deep knowledge, beautiful city)</div>
+            <div>adv + adj (VD: very important, extremely useful)</div>
+            <div>adv + verb (VD: work efficiently, speak fluently)</div>
+          </div>
+        </div>
+
+        <!-- Phần 9: Các từ TOEIC hay đánh lừa -->
+        <div class="tip-section">
+          <h2>Các từ TOEIC hay đánh lừa</h2>
+          <table class="tip-table">
+            <thead>
+              <tr>
+                <th>Từ</th>
+                <th>Từ loại</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>depth</td><td>Noun</td></tr>
+              <tr><td>strength</td><td>Noun</td></tr>
+              <tr><td>width</td><td>Noun</td></tr>
+              <tr><td>length</td><td>Noun</td></tr>
+              <tr><td>research</td><td>Noun / Verb</td></tr>
+              <tr><td>increase</td><td>Noun / Verb</td></tr>
+              <tr><td>access</td><td>Noun / Verb</td></tr>
+              <tr><td>benefit</td><td>Noun / Verb</td></tr>
+              <tr><td>record</td><td>Noun / Verb</td></tr>
+              <tr><td>fast</td><td>Adj / Adv</td></tr>
+              <tr><td>hard</td><td>Adj / Adv</td></tr>
+              <tr><td>early</td><td>Adj / Adv</td></tr>
+              <tr><td>daily</td><td>Adj / Adv</td></tr>
+              <tr><td>monthly</td><td>Adj / Adv</td></tr>
+              <tr><td>friendly</td><td>Adj</td></tr>
+              <tr><td>lively</td><td>Adj</td></tr>
+              <tr><td>elderly</td><td>Adj / Noun</td></tr>
+              <tr><td>likely</td><td>Adj / Adv</td></tr>
+              <tr><td>well</td><td>Adv / Adj</td></tr>
+              <tr><td>present</td><td>Noun / Adj / Verb</td></tr>
+              <tr><td>close</td><td>Adj / Verb / Adv</td></tr>
+              <tr><td>average</td><td>Noun / Adj / Verb</td></tr>
+            </tbody>
+          </table>
+          <div class="tip-box">
+            <p><strong>Khi làm TOEIC Part 5, Part 6:</strong></p>
+            <ol style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.8;">
+              <li>Xác định vị trí trống.</li>
+              <li>Xem trước và sau chỗ trống.</li>
+              <li>Đoán từ loại.</li>
+              <li>Mới xét nghĩa.</li>
+            </ol>
+            <p style="margin-top: 0.5rem;">Làm đúng bước này thường xử lý được phần lớn câu hỏi từ loại.</p>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+  
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const applyTheme = (isDark) => {
+      if (isDark) {
+        document.body.classList.add('dark-mode');
+        if(themeToggleBtn) themeToggleBtn.innerHTML = '<i class="ph ph-sun theme-toggle-icon"></i>';
+      } else {
+        document.body.classList.remove('dark-mode');
+        if(themeToggleBtn) themeToggleBtn.innerHTML = '<i class="ph ph-moon theme-toggle-icon"></i>';
+      }
+    };
+    const toggleTheme = () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      applyTheme(isDark);
+    };
+    if(themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      applyTheme(savedTheme === 'dark');
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      applyTheme(true);
+    }
+
+    // --- POS Checker Logic ---
+    const posInput = document.getElementById('pos-input');
+    
+    // Auto check on paste or input
+    posInput.addEventListener('input', () => {
+      checkPOS();
+    });
+
+    const analyzeWord = (word) => {
+        const w = word.toLowerCase().trim();
+        
+        // Exceptions & common words
+        const exceptions = {
+            'friendly': { pos: 'Tính từ (Adjective)', reason: 'Ngoại lệ đuôi -ly' },
+            'lovely': { pos: 'Tính từ (Adjective)', reason: 'Ngoại lệ đuôi -ly' },
+            'lonely': { pos: 'Tính từ (Adjective)', reason: 'Ngoại lệ đuôi -ly' },
+            'lively': { pos: 'Tính từ (Adjective)', reason: 'Ngoại lệ đuôi -ly' },
+            'silly': { pos: 'Tính từ (Adjective)', reason: 'Ngoại lệ đuôi -ly' },
+            'ugly': { pos: 'Tính từ (Adjective)', reason: 'Ngoại lệ đuôi -ly' },
+            'fast': { pos: 'Tính từ / Trạng từ', reason: 'Ngoại lệ không có -ly' },
+            'hard': { pos: 'Tính từ / Trạng từ', reason: 'Ngoại lệ không có -ly' },
+            'late': { pos: 'Tính từ / Trạng từ', reason: 'Ngoại lệ không có -ly' },
+            'early': { pos: 'Tính từ / Trạng từ', reason: 'Ngoại lệ không có -ly' },
+            'straight': { pos: 'Tính từ / Trạng từ', reason: 'Ngoại lệ không có -ly' },
+            'daily': { pos: 'Tính từ / Trạng từ', reason: 'Từ đa chức năng' },
+            'monthly': { pos: 'Tính từ / Trạng từ', reason: 'Từ đa chức năng' },
+            'likely': { pos: 'Tính từ / Trạng từ', reason: 'Từ đa chức năng' },
+            'well': { pos: 'Trạng từ / Tính từ', reason: 'Ngoại lệ của good' },
+            'elderly': { pos: 'Tính từ / Danh từ', reason: 'Từ đa chức năng' },
+            
+            // Verbs ending in -er or -or
+            'differ': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'prefer': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'refer': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'offer': { pos: 'Động từ / Danh từ', reason: 'Ngoại lệ đuôi -er (V/N)' },
+            'discover': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'recover': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'suffer': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'consider': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'remember': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'deliver': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'answer': { pos: 'Động từ / Danh từ', reason: 'Ngoại lệ đuôi -er (V/N)' },
+            'gather': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'bother': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'wonder': { pos: 'Động từ / Danh từ', reason: 'Ngoại lệ đuôi -er (V/N)' },
+            'enter': { pos: 'Động từ (Verb)', reason: 'Ngoại lệ đuôi -er (Động từ)' },
+            'master': { pos: 'Động từ / Danh từ', reason: 'Ngoại lệ đuôi -er (V/N)' },
+            
+            'depth': { pos: 'Danh từ (Noun)', reason: 'Đuôi -th (từ vựng hay lừa)' },
+            'strength': { pos: 'Danh từ (Noun)', reason: 'Đuôi -th (từ vựng hay lừa)' },
+            'width': { pos: 'Danh từ (Noun)', reason: 'Đuôi -th (từ vựng hay lừa)' },
+            'length': { pos: 'Danh từ (Noun)', reason: 'Đuôi -th (từ vựng hay lừa)' },
+            
+            'research': { pos: 'Danh từ / Động từ', reason: 'Từ vựng hay đánh lừa' },
+            'increase': { pos: 'Danh từ / Động từ', reason: 'Từ vựng hay đánh lừa' },
+            'access': { pos: 'Danh từ / Động từ', reason: 'Từ vựng hay đánh lừa' },
+            'benefit': { pos: 'Danh từ / Động từ', reason: 'Từ vựng hay đánh lừa' },
+            'record': { pos: 'Danh từ / Động từ', reason: 'Từ vựng hay đánh lừa' },
+            'present': { pos: 'Danh từ / Tính từ / Động từ', reason: 'Từ vựng hay đánh lừa' },
+            'close': { pos: 'Tính từ / Động từ / Trạng từ', reason: 'Từ vựng hay đánh lừa' },
+            'average': { pos: 'Danh từ / Tính từ / Động từ', reason: 'Từ vựng hay đánh lừa' },
+            
+            'interest': { pos: 'Danh từ / Động từ', reason: 'Từ vựng đa dạng' },
+            'interested': { pos: 'Tính từ (Adjective)', reason: 'Đuôi -ed chỉ cảm xúc' },
+            'interesting': { pos: 'Tính từ (Adjective)', reason: 'Đuôi -ing chỉ tính chất' },
+            'bored': { pos: 'Tính từ (Adjective)', reason: 'Đuôi -ed chỉ cảm xúc' },
+            'boring': { pos: 'Tính từ (Adjective)', reason: 'Đuôi -ing chỉ tính chất' },
+            'excited': { pos: 'Tính từ (Adjective)', reason: 'Đuôi -ed chỉ cảm xúc' },
+            'exciting': { pos: 'Tính từ (Adjective)', reason: 'Đuôi -ing chỉ tính chất' },
+            
+            // Pronouns
+            'i': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ nhân xưng chủ ngữ' },
+            'you': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ nhân xưng' },
+            'he': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ nhân xưng chủ ngữ' },
+            'she': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ nhân xưng chủ ngữ' },
+            'it': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ nhân xưng' },
+            'we': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ nhân xưng chủ ngữ' },
+            'they': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ nhân xưng chủ ngữ' },
+            'me': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ tân ngữ' },
+            'him': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ tân ngữ' },
+            'her': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ tân ngữ' },
+            'us': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ tân ngữ' },
+            'them': { pos: 'Đại từ (Pronoun)', reason: 'Đại từ tân ngữ' },
+            
+            // Prepositions
+            'in': { pos: 'Giới từ (Preposition)', reason: 'Giới từ thường gặp' },
+            'on': { pos: 'Giới từ (Preposition)', reason: 'Giới từ thường gặp' },
+            'at': { pos: 'Giới từ (Preposition)', reason: 'Giới từ thường gặp' },
+            'for': { pos: 'Giới từ / Liên từ', reason: 'Giới từ hoặc Liên từ FANBOYS' },
+            'from': { pos: 'Giới từ (Preposition)', reason: 'Giới từ thường gặp' },
+            'with': { pos: 'Giới từ (Preposition)', reason: 'Giới từ thường gặp' },
+            'about': { pos: 'Giới từ (Preposition)', reason: 'Giới từ thường gặp' },
+            'before': { pos: 'Giới từ / Liên từ', reason: 'Giới từ hoặc Liên từ' },
+            'after': { pos: 'Giới từ / Liên từ', reason: 'Giới từ hoặc Liên từ' },
+            'during': { pos: 'Giới từ (Preposition)', reason: 'Giới từ thường gặp' },
+            'among': { pos: 'Giới từ (Preposition)', reason: 'Giới từ thường gặp' },
+            'between': { pos: 'Giới từ (Preposition)', reason: 'Giới từ thường gặp' },
+            
+            // Conjunctions
+            'and': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ FANBOYS' },
+            'nor': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ FANBOYS' },
+            'but': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ FANBOYS' },
+            'or': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ FANBOYS' },
+            'yet': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ FANBOYS' },
+            'so': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ FANBOYS' },
+            'because': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ phụ thuộc' },
+            'although': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ phụ thuộc' },
+            'while': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ phụ thuộc' },
+            'since': { pos: 'Liên từ / Giới từ', reason: 'Liên từ phụ thuộc / Giới từ' },
+            'unless': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ phụ thuộc' },
+            'if': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ phụ thuộc' },
+            'when': { pos: 'Liên từ (Conjunction)', reason: 'Liên từ phụ thuộc' }
+        };
+        
+        if (exceptions[w]) return exceptions[w];
+
+        // Suffixes Priority
+        if (w.endsWith('tion') || w.endsWith('sion')) return { pos: 'Danh từ (Noun)', reason: 'Đuôi -tion / -sion' };
+        if (w.endsWith('ment')) return { pos: 'Danh từ (Noun)', reason: 'Đuôi -ment' };
+        if (w.endsWith('ness')) return { pos: 'Danh từ (Noun)', reason: 'Đuôi -ness' };
+        if (w.endsWith('ity')) return { pos: 'Danh từ (Noun)', reason: 'Đuôi -ity' };
+        if (w.endsWith('ance') || w.endsWith('ence')) return { pos: 'Danh từ (Noun)', reason: 'Đuôi -ance / -ence' };
+        if (w.endsWith('ship')) return { pos: 'Danh từ (Noun)', reason: 'Đuôi -ship' };
+        if (w.endsWith('ist')) return { pos: 'Danh từ (Noun)', reason: 'Đuôi -ist' };
+        if (w.endsWith('ism')) return { pos: 'Danh từ (Noun)', reason: 'Đuôi -ism' };
+        if (w.endsWith('age')) return { pos: 'Danh từ (Noun)', reason: 'Đuôi -age' };
+        if (w.endsWith('th')) return { pos: 'Danh từ (Noun)', reason: 'Đuôi -th' };
+        
+        if (w.endsWith('ful')) return { pos: 'Tính từ (Adjective)', reason: 'Đuôi -ful' };
+        if (w.endsWith('less')) return { pos: 'Tính từ (Adjective)', reason: 'Đuôi -less' };
+        if (w.endsWith('ous')) return { pos: 'Tính từ (Adjective)', reason: 'Đuôi -ous' };
+        if (w.endsWith('able') || w.endsWith('ible')) return { pos: 'Tính từ (Adjective)', reason: 'Đuôi -able / -ible' };
+        if (w.endsWith('ive')) return { pos: 'Tính từ (Adjective)', reason: 'Đuôi -ive' };
+        if (w.endsWith('al')) return { pos: 'Tính từ (Adjective)', reason: 'Đuôi -al' };
+        if (w.endsWith('ic')) return { pos: 'Tính từ (Adjective)', reason: 'Đuôi -ic' };
+        if (w.endsWith('ish')) return { pos: 'Tính từ (Adjective)', reason: 'Đuôi -ish' };
+        
+        if (w.endsWith('ly')) return { pos: 'Trạng từ (Adverb)', reason: 'Đuôi -ly' };
+        if (w.endsWith('ward')) return { pos: 'Trạng từ (Adverb)', reason: 'Đuôi -ward' };
+        if (w.endsWith('wise')) return { pos: 'Trạng từ (Adverb)', reason: 'Đuôi -wise' };
+        
+        if (w.endsWith('y')) return { pos: 'Tính từ (Adjective)', reason: 'Đuôi -y' };
+        if (w.endsWith('ize') || w.endsWith('ise')) return { pos: 'Động từ (Verb)', reason: 'Đuôi -ize / -ise' };
+        if (w.endsWith('fy')) return { pos: 'Động từ (Verb)', reason: 'Đuôi -fy' };
+        if (w.endsWith('en')) return { pos: 'Động từ (Verb)', reason: 'Đuôi -en' };
+        
+        if (w.endsWith('er') || w.endsWith('or')) return { pos: 'Danh từ (Noun)', reason: 'Đuôi -er/-or (thường chỉ người/vật)' };
+        if (w.endsWith('ed')) return { pos: 'Động từ (Verb) / Tính từ (Adj)', reason: 'Đuôi -ed (Thường là V-ed hoặc Adj)' };
+        if (w.endsWith('ing')) return { pos: 'Danh động từ / Tính từ', reason: 'Đuôi -ing (V-ing hoặc Adj)' };
+
+        // Common irregular verbs (no clear suffix)
+        const commonVerbs = ['go', 'come', 'make', 'take', 'get', 'is', 'am', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did', 'can', 'could', 'will', 'would', 'shall', 'should', 'may', 'might', 'must', 'seem', 'look', 'feel', 'sound', 'become'];
+        if (commonVerbs.includes(w)) return { pos: 'Động từ (Verb)', reason: 'Động từ/Trợ động từ phổ biến' };
+
+        return { pos: '<span style="color:var(--text-muted)">Không rõ</span>', reason: '<span style="color:var(--text-muted)">Không có hậu tố nhận diện</span>' };
+    };
+
+    const checkPOS = () => {
+        const text = document.getElementById('pos-input').value;
+        const container = document.getElementById('pos-results-container');
+        const resultsTbody = document.getElementById('pos-results');
+        
+        if (!text.trim()) {
+            container.style.display = 'none';
+            return;
+        }
+
+        // Tách các từ, loại bỏ dấu câu (trừ gạch nối) và số
+        // Ta cũng lấy các từ độ dài >= 1 để kiểm tra được cả 'I', 'a'
+        const words = text.replace(/[^a-zA-Z\s-]/g, '').split(/\s+/).filter(w => w.length > 0);
+        
+        if (words.length === 0) {
+             container.style.display = 'none';
+             return;
+        }
+
+        // Lọc các từ trùng lặp
+        const uniqueWords = [...new Set(words)];
+
+        let html = '';
+        uniqueWords.forEach(word => {
+            // Không phân tích "a", "an", "the" vì nó là mạo từ (Article)
+            const wLower = word.toLowerCase();
+            let analysis;
+            if (['a', 'an', 'the'].includes(wLower)) {
+                analysis = { pos: 'Mạo từ (Article)', reason: 'Mạo từ xác định/không xác định' };
+            } else {
+                analysis = analyzeWord(word);
+            }
+            
+            // Format màu sắc cho từ loại
+            let posColor = 'var(--text-main)';
+            if (analysis.pos.includes('Danh từ')) posColor = '#3b82f6';
+            else if (analysis.pos.includes('Tính từ')) posColor = '#10b981';
+            else if (analysis.pos.includes('Trạng từ')) posColor = '#8b5cf6';
+            else if (analysis.pos.includes('Động từ')) posColor = '#ef4444';
+            else if (analysis.pos.includes('Đại từ')) posColor = '#f59e0b';
+            else if (analysis.pos.includes('Giới từ')) posColor = '#06b6d4';
+            else if (analysis.pos.includes('Liên từ')) posColor = '#d946ef';
+
+            html += `
+              <tr>
+                <td style="font-weight: 600;">${word}</td>
+                <td style="color: ${posColor}; font-weight: 500;">${analysis.pos}</td>
+                <td>${analysis.reason}</td>
+              </tr>
+            `;
+        });
+
+        resultsTbody.innerHTML = html;
+        container.style.display = 'block';
+    };
+  </script>
+</body>
+</html>
